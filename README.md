@@ -17,7 +17,7 @@ Basic shooter game with different features.
 * GUI is important and will affect the grade.
 
 Rules we created:
-* There are limitless levels.
+* There are infinite levels.
 * Game continue until you dead.
 * You have to destroy all enemies to pass any level.
 * If you miss an enemy , this enemy will born again with differen speed.
