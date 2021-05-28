@@ -1,18 +1,17 @@
-
-
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import java.net.URL;
 
 public class PlayMusic {
 
     private Clip clip;
 
-    public PlayMusic(String path){
+    public PlayMusic(URL path){
         try{
             AudioInputStream ais =
-                    AudioSystem.getAudioInputStream(getClass().getResourceAsStream(path));
+                    AudioSystem.getAudioInputStream(path);
             AudioFormat baseFormat = ais.getFormat();
             AudioFormat decodeFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED,
                     baseFormat.getSampleRate(),16,baseFormat.getChannels(), baseFormat.getChannels() * 2,

@@ -7,10 +7,13 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 public class Game extends Canvas implements Runnable{
+
+    //URL fireSoundURL,bgMusicURL,loseSoundURL,vupSoundURL;
+
 
     public static final int WIDTH = 320;
     public static final int HEIGHT = 400;
@@ -25,10 +28,15 @@ public class Game extends Canvas implements Runnable{
     private Thread thread;
 
 
-    public static PlayMusic bgMusic = new PlayMusic("/background.wav");
-    public static PlayMusic fireSound= new PlayMusic("/fire.wav");
-    public static PlayMusic loseSound = new PlayMusic("/lose.wav");
-    public static PlayMusic vupSound = new PlayMusic("/vup.wav");
+    public static URL fireSoundURL = Game.class.getResource("fire.wav");
+    public static URL bgMusicURL = Game.class.getResource("background.wav");
+    public static URL loseSoundURL = Game.class.getResource("lose.wav");
+    public static URL vupSoundURL = Game.class.getResource("vup.wav");
+
+    public  static PlayMusic bgMusic = new PlayMusic(bgMusicURL);
+    public  static PlayMusic fireSound= new PlayMusic(fireSoundURL);
+    public  static PlayMusic loseSound = new PlayMusic(loseSoundURL);
+    public  static PlayMusic vupSound = new PlayMusic(vupSoundURL);
 
     //sound on--of
     public static boolean  sound = true;
@@ -92,24 +100,29 @@ public class Game extends Canvas implements Runnable{
 
     public static STATE State = STATE.MENU;
 
+
+
     public void init(){
+            URL font_path = getClass().getResource("/bubblefont.TTF");
+
         //FONTS
         try{
-            littleBubbleFont = Font.createFont(Font.TRUETYPE_FONT, new File("bubblefont.TTF")).deriveFont(23f);
+            littleBubbleFont = Font.createFont(Font.TRUETYPE_FONT, font_path.openStream()).deriveFont(23f);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT,new File("bubblefont.TTF")));
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT,font_path.openStream()));
         }catch(IOException | FontFormatException e ){}
         try{
-            bubbleFont = Font.createFont(Font.TRUETYPE_FONT, new File("bubblefont.TTF")).deriveFont(35f);
+            bubbleFont = Font.createFont(Font.TRUETYPE_FONT, font_path.openStream()).deriveFont(35f);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT,new File("bubblefont.TTF")));
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT,font_path.openStream()));
         }catch(IOException | FontFormatException e ){}
 
         try{
-            bigBubbleFont = Font.createFont(Font.TRUETYPE_FONT, new File("bubblefont.TTF")).deriveFont(55f);
+            bigBubbleFont = Font.createFont(Font.TRUETYPE_FONT, font_path.openStream()).deriveFont(55f);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT,new File("bubblefont.TTF")));
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT,font_path.openStream()));
         }catch(IOException | FontFormatException e ){}
+
 
         BufferedImageLoader loader = new BufferedImageLoader();
        try{
