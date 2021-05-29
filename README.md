@@ -22,6 +22,3 @@ Rules we created:
 * You have to destroy all enemies to pass any level.
 * If you miss an enemy , this enemy will born again with differen speed.
 
-The gameplay video of the game is in the link below.
-
-https://www.youtube.com/watch?v=0oXGq4uiF_Q
